@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Container } from './container';
 import { services } from '@/lib/site-config';
@@ -11,6 +12,21 @@ const variantMap: Record<string, 'glass-panel' | 'glass-door' | 'mirror' | 'slid
   mirrors: 'mirror',
   'window-replacement': 'glass-panel',
   'glass-railings': 'glass-panel',
+};
+
+const photoMap: Record<string, { src: string; alt: string }> = {
+  'frameless-shower-doors': {
+    src: '/portfolio/service-frameless.jpg',
+    alt: 'Frameless inline shower with marble walls and herringbone accent by Quality Glass & Design of The Upstate',
+  },
+  'sliding-shower-doors': {
+    src: '/portfolio/service-sliding.jpg',
+    alt: 'Sliding shower door with matte black hardware and marble tile by Quality Glass & Design of The Upstate',
+  },
+  hydroslide: {
+    src: '/portfolio/service-hydroslide.jpg',
+    alt: 'CRL Hydroslide bifold shower door with frosted privacy band by Quality Glass & Design of The Upstate',
+  },
 };
 
 export function ServicesGrid() {
@@ -43,10 +59,19 @@ export function ServicesGrid() {
               className="group relative bg-bone p-8 lg:p-10 transition-colors duration-500 hover:bg-bone-dim"
             >
               <div className="relative aspect-[4/3] mb-8 overflow-hidden bg-bone-dim">
-                <PlaceholderArt
-                  label={`${String(i + 1).padStart(2, '0')} / ${service.name}`}
-                  variant={variantMap[service.slug] || 'glass-panel'}
-                />
+                {photoMap[service.slug] ? (
+                  <Image
+                    src={photoMap[service.slug].src}
+                    alt={photoMap[service.slug].alt}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <PlaceholderArt
+                    label={`${String(i + 1).padStart(2, '0')} / ${service.name}`}
+                    variant={variantMap[service.slug] || 'glass-panel'}
+                  />
+                )}
               </div>
 
               <div className="flex items-start justify-between gap-4">

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Nav } from '@/components/nav';
 import { Footer } from '@/components/footer';
@@ -22,6 +23,21 @@ const variantMap: Record<string, 'glass-panel' | 'glass-door' | 'mirror' | 'slid
   mirrors: 'mirror',
   'window-replacement': 'glass-panel',
   'glass-railings': 'glass-panel',
+};
+
+const photoMap: Record<string, { src: string; alt: string }> = {
+  'frameless-shower-doors': {
+    src: '/portfolio/service-frameless.jpg',
+    alt: 'Frameless inline shower with marble walls and herringbone accent by Quality Glass & Design of The Upstate',
+  },
+  'sliding-shower-doors': {
+    src: '/portfolio/service-sliding.jpg',
+    alt: 'Sliding shower door with matte black hardware and marble tile by Quality Glass & Design of The Upstate',
+  },
+  hydroslide: {
+    src: '/portfolio/service-hydroslide.jpg',
+    alt: 'CRL Hydroslide bifold shower door with frosted privacy band by Quality Glass & Design of The Upstate',
+  },
 };
 
 export default function ServicesPage() {
@@ -51,10 +67,19 @@ export default function ServicesPage() {
                 >
                   <div className="lg:col-span-4">
                     <div className="relative aspect-[4/3] overflow-hidden bg-bone-dim">
-                      <PlaceholderArt
-                        label={service.name}
-                        variant={variantMap[service.slug] || 'glass-panel'}
-                      />
+                      {photoMap[service.slug] ? (
+                        <Image
+                          src={photoMap[service.slug].src}
+                          alt={photoMap[service.slug].alt}
+                          fill
+                          className="object-cover"
+                        />
+                      ) : (
+                        <PlaceholderArt
+                          label={service.name}
+                          variant={variantMap[service.slug] || 'glass-panel'}
+                        />
+                      )}
                     </div>
                   </div>
 

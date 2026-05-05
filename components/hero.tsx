@@ -1,7 +1,7 @@
+import Image from 'next/image';
 import { Container } from './container';
 import { Button } from './button';
 import { Star } from 'lucide-react';
-import { PlaceholderArt } from './placeholder-art';
 
 export function Hero() {
   return (
@@ -50,10 +50,13 @@ export function Hero() {
 
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden ring-1 ring-ink/10">
-              {/* TO REPLACE: drop /public/portfolio/hero.jpg, then swap PlaceholderArt for:
-                  <Image src="/portfolio/hero.jpg" alt="Frameless shower door, Augusta Road" fill className="object-cover" priority />
-              */}
-              <PlaceholderArt label="Featured install" />
+              <Image
+                src="/portfolio/hero.jpg"
+                alt="Frameless 90-degree corner shower with brass hardware and white subway tile by Quality Glass & Design of The Upstate"
+                fill
+                className="object-cover"
+                priority
+              />
 
               <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-3">
                 <div className="bg-bone/95 backdrop-blur-sm px-4 py-3">

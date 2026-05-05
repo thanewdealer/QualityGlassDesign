@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { Nav } from '@/components/nav';
 import { Footer } from '@/components/footer';
 import { PageHeader } from '@/components/page-header';
 import { Container } from '@/components/container';
 import { Button } from '@/components/button';
-import { PlaceholderArt } from '@/components/placeholder-art';
 import { FinalCTA } from '@/components/final-cta';
 
 export const metadata: Metadata = {
@@ -34,7 +34,12 @@ export default function GreerPage() {
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
               <div className="lg:col-span-5">
                 <div className="relative aspect-[4/5] overflow-hidden ring-1 ring-ink/10 sticky top-28">
-                  <PlaceholderArt label="Greer install" variant="glass-door" />
+                  <Image
+                    src="/portfolio/greer.jpg"
+                    alt="Frameless walk-in shower with subway tile, encaustic floor, and matte black hardware in a Greer home by Quality Glass & Design of The Upstate"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
               </div>
 
